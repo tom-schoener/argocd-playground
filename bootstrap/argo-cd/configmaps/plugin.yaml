@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ConfigManagementPlugin
+name: cmp-plugin
+metadata:
+  name: cmp-plugin
+spec:
+  version: v1.0
+  generate:
+    command: [sh, -c, "helmfile --namespace $ARGOCD_APP_NAMESPACE template | sed -e '1,/---/d'"]
+  discover:
+    fileName: "helmfile.yaml"
+  allowConcurrency: true
+  lockRepo: false

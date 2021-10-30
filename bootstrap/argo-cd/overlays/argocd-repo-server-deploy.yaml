@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-repo-server
+  revisionHistoryLimit: 2
+  template:
+    spec:
+      containers:
+      - name: cmp
+        command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        image: "chatwork/helmfile:0.145.3-3.9.3"
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /tmp
+            name: tmp
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml # Plugin config file can either be volume mapped or baked into image
+            subPath: plugin.yaml
+            name: cmp-plugin
+          - mountPath: /helm-working-dir
+            name: helm-working-dir
+        resources: {}
+      volumes:
+      - configMap:
+          name: cmp-plugin
+        name: cmp-plugin
+      - name: helm-working-dir
+        emptyDir: {}

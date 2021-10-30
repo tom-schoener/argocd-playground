@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-test
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/tom-schoener/argocd-playground
+      revision: HEAD
+      files:
+      - path: apps/**/dev/app-config.yaml
+  template:
+    spec:
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/tom-schoener/argocd-playground
+        targetRevision: HEAD
+        path: "{{app.path}}"
+      destination:
+        name: in-cluster
+        namespace: test

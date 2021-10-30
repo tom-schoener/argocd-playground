@@ -1,0 +1,26 @@
+bases: []
+
+environments:
+  default: {}
+
+repositories:
+- name: bitnami
+  url: https://charts.bitnami.com/bitnami
+- name: ealenn
+  url: https://ealenn.github.io/charts
+
+helmDefaults: {}
+
+releases: 
+  - name: nginx
+    namespace: test
+    chart: bitnami/nginx
+    values: 
+    - service:
+        type: ClusterIP
+  - name: echo-server-helmfile
+    namespace: test
+    chart: ealenn/echo-server
+    version: 0.3.1
+
+missingFileHandler: Error

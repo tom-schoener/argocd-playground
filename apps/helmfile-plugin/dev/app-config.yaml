@@ -1,0 +1,3 @@
+app:
+  name: helmfile-plugin
+  path: apps/helmfile-plugin/dev

@@ -5,8 +5,8 @@ bases:
 - https://raw.githubusercontent.com/argoproj/argo-cd/v2.4.11/manifests/install.yaml
 
 # additional resources like ingress rules, cluster and repository secrets.
-resources: []
-#- resources/ingress.yaml
+resources:
+- resources/ingress.yaml
 
 patchesStrategicMerge:
 - overlays/argocd-repo-server-deploy.yaml

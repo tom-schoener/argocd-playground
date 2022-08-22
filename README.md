@@ -4,7 +4,7 @@
 
 Install [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
-```
+```sh
 cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4

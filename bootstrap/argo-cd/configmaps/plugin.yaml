@@ -6,8 +6,9 @@ metadata:
 spec:
   version: v1.0
   generate:
-    command: [sh, -c, "helmfile --namespace $ARGOCD_APP_NAMESPACE template | sed -e '1,/---/d'"]
+    command: [sh, -c]
+    args:  ["helmfile --namespace $ARGOCD_APP_NAMESPACE template | sed -e '1,/---/d'"]
   discover:
     fileName: "helmfile.yaml"
-  allowConcurrency: false
+  allowConcurrency: true
   lockRepo: false

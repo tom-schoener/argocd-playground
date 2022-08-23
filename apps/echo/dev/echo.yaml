@@ -22,19 +22,18 @@ spec:
   # Default port used by the image
   - port: 5678
 ---
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: example-ingress
-#spec:
-#  rules:
-#  - http:
-#      paths:
-#      - pathType: Prefix
-#        path: "/_custom/bar"
-#        backend:
-#          service:
-#            name: bar-service
-#            port:
-#              number: 5678
-#h---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/my-service/bar"
+        backend:
+          service:
+            name: bar-service
+            port:
+              number: 5678

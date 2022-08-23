@@ -20,7 +20,7 @@ spec:
           - mountPath: /var/run/argocd
             name: var-files
           - mountPath: /tmp
-            name: tmp
+            name: cmp-tmp
           - mountPath: /home/argocd/cmp-server/plugins
             name: plugins
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml # Plugin config file can either be volume mapped or baked into image
@@ -34,4 +34,6 @@ spec:
           name: cmp-plugin
         name: cmp-plugin
       - name: helm-working-dir
+        emptyDir: {}
+      - name: cmp-tmp
         emptyDir: {}

@@ -11,13 +11,7 @@ repositories:
 
 helmDefaults: {}
 
-releases: 
-  - name: nginx
-    namespace: test
-    chart: bitnami/nginx
-    values: 
-    - service:
-        type: ClusterIP
+releases:
   - name: echo-server-helmfile
     namespace: test
     chart: ealenn/echo-server

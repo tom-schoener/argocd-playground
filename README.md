@@ -1,8 +1,8 @@
 # Argo CD Playground
 
-## Local Cluster with Kind and Ingress Controller
+## Local Cluster Setup
 
-Install [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+Install [kind](https://kind.sigs.k8s.io/docs/user/quick-start/):
 
 ```sh
 cat <<EOF | kind create cluster --config=-
@@ -24,6 +24,11 @@ nodes:
     hostPort: 443
     protocol: TCP
 EOF
+```
+
+Install `nginx ingress controller`
+
+```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 ```
 

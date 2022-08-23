@@ -9,5 +9,5 @@ spec:
     command: [sh, -c, "helmfile --namespace $ARGOCD_APP_NAMESPACE template | sed -e '1,/---/d'"]
   discover:
     fileName: "helmfile.yaml"
-  allowConcurrency: true
+  allowConcurrency: false
   lockRepo: false

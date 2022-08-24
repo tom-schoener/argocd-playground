@@ -26,18 +26,18 @@ spec:
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml # Plugin config file can either be volume mapped or baked into image
             subPath: plugin.yaml
             name: cmp-plugin
-          - mountPath: /helm-working-dir
-            name: helm-working-dir
           - mountPath: /.config
-            name: config
+            name: helm-config
+          - mountPath: /.cache
+            name: helm-cache
         resources: {}
       volumes:
       - configMap:
           name: cmp-plugin
         name: cmp-plugin
-      - name: helm-working-dir
+      - name: helm-cache
         emptyDir: {}
       - name: cmp-tmp
         emptyDir: {}
-      - name: config
+      - name: helm-config
         emptyDir: {}

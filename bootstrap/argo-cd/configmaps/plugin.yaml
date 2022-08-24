@@ -7,7 +7,7 @@ spec:
   version: v1.0
   generate:
     command: [sh, -c]
-    args:  ["helmfile --no-color --namespace $ARGOCD_APP_NAMESPACE template | sed -e '1,/---/d'"]
+    args:  ["helmfile --no-color --namespace $ARGOCD_APP_NAMESPACE template > _out.yaml && cat _out.yaml"]
   discover:
     fileName: "helmfile.yaml"
   allowConcurrency: true

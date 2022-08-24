@@ -13,6 +13,13 @@ releases:
   - name: echo-server-helmfile
     namespace: test
     chart: ealenn/echo-server
-    version: 0.3.1
+    version: 0.5.0
+    values: 
+    - ingress:
+        enabled: true
+        hosts:
+        - host: "localhost"
+          paths: 
+          - "/helmfile-echo"
 
 missingFileHandler: Error

@@ -28,6 +28,8 @@ spec:
             name: cmp-plugin
           - mountPath: /helm-working-dir
             name: helm-working-dir
+          - mountPath: /.config
+            name: config
         resources: {}
       volumes:
       - configMap:
@@ -36,4 +38,6 @@ spec:
       - name: helm-working-dir
         emptyDir: {}
       - name: cmp-tmp
+        emptyDir: {}
+      - name: config
         emptyDir: {}
